@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battletech_3062_Start_Creator.Manager;
+using Battletech_3062_Start_Creator.Classes;
+using System.Diagnostics;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+using System.Collections.ObjectModel;
 
 namespace Battletech_3062_Start_Creator
 {
@@ -22,11 +27,18 @@ namespace Battletech_3062_Start_Creator
     public partial class MainWindow : Window
     {
         GearList gearlist = new GearList();
+        MechManager mechManager= new MechManager();
+        StartsManager startManager = new StartsManager();
         public MainWindow()
         {
             InitializeComponent();
+            startManager.PopulateStarts();
+            List_of_Starts.ItemsSource = startManager.Starts;
+        }
 
-            gearlist.PopulateMechs();
+        private void starts_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -10,10 +10,10 @@ namespace Battletech_3062_Start_Creator.Classes
     /// Immutable class for mechs
     /// May polymorph into 
     /// </summary>
-    class Mech
+    class Mech : Interface
     {
-        public string Name { get; }
-        public int Rarity { get; }
+        public string Name { get; set; }
+        public int? Rarity { get; set; }
 
         /// <summary>
         /// Constructor for Mech objects

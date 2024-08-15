@@ -8,9 +8,51 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="767*"/>
-            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
+        <TextBlock 
+            Background="Gray"
+            FontSize="40" TextAlignment="Center"
+            
+            Foreground="WhiteSmoke"
+            Grid.Column="0" Grid.Row="0"
+            >
+                Battletech 3062 Start Creator
+        </TextBlock>
+
+        <Button 
+            Name="starts" Background="Gray"
+            BorderBrush="Yellow" BorderThickness="1"
+            Click="starts_Click" ClickMode="Press"
+            Grid.Column="0" Grid.Row="2"
+            >
+            Start
+        </Button>
+
+        <!--
+        <ListView 
+            x:Name="List_of_Starts" Margin="76,146,75,68"        
+            >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="146"/>
+                    <GridViewColumn Header="File Path" DisplayMemberBinding="{Binding FilePath}" Width="100"/>
+                </GridView>
+            </ListView.View>    
+        </ListView>
+        -->
+        <ComboBox Name="List_of_Starts"
+                  ItemsSource="{Binding List_of_Starts}"
+                  DisplayMemberPath="Name"
+                  Text="Start"
+                  IsEditable="False" IsReadOnly="True"
+                  VerticalAlignment="Center" HorizontalAlignment="Center"
+                  Grid.Column="0" Grid.Row="1"/>
     </Grid>
 </Window>

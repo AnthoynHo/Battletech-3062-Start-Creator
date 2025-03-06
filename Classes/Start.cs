@@ -13,20 +13,34 @@ namespace Battletech_3062_Start_Creator.Classes
         public string ID { get; set; }
         public string System { get; set; }
         public double ScoreModifier { get; set; }
-        public string MechLists { get; set; }
-          
+        public string[] MechLists { get; set; }
+        public bool FilenameIDMatch { get; }
         
 
         public Start(string filepath)
         {
             StartJson temp = new StartJson();
             StartJson.StartData Data = temp.DeserializeStart(filepath);
-            Filename = filepath.Replace("D:\\Steam\\steamapps\\common\\BATTLETECH\\Mods\\BT Advanced Starters\\BTA_Starters_Base\\", "");
+            Filename = filepath.Replace("D:\\Steam\\steamapps\\common\\BATTLETECH\\Mods\\BT Advanced Starters\\BTA_Starters_Base\\", ""); 
             Name = Data.Instructions[0].Value.Name;
             ID = Data.Instructions[0].Value.ID;
             ScoreModifier = Data.Instructions[0].Value.CareerScoreModifier;
             System = Data.Instructions[0].Value.DifficultyConstants[0].ConstantValue;
-            MechLists = Data.Instructions[0].Value.DifficultyConstants[1].ConstantValue;
+            //Some Start JSONs have three DifficultyConstants some have 2 MechList is always last as of 2024-09-12
+            int MechI = Data.Instructions[0].Value.DifficultyConstants.Count - 1;
+            MechLists = Data.Instructions[0].Value.DifficultyConstants[MechI].ConstantValue.Split(",");
+
+
+            string expectedFilename = $"Starter_BTA_{ID}.json";
+            if (!Filename.Equals(expectedFilename, StringComparison.OrdinalIgnoreCase))
+            {
+                FilenameIDMatch= false;
+                throw new InvalidOperationException($"Filename {ID} does not match the expected format {expectedFilename}.");
+            }
+            else
+            {
+                FilenameIDMatch = true;
+            }
         }
 
         

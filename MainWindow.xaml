@@ -12,47 +12,49 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock 
             Background="Gray"
             FontSize="40" TextAlignment="Center"
-            
+
             Foreground="WhiteSmoke"
             Grid.Column="0" Grid.Row="0"
             >
                 Battletech 3062 Start Creator
         </TextBlock>
 
-        <Button 
-            Name="starts" Background="Gray"
-            BorderBrush="Yellow" BorderThickness="1"
-            Click="starts_Click" ClickMode="Press"
-            Grid.Column="0" Grid.Row="2"
-            >
-            Start
-        </Button>
+        <Grid Grid.Column="0" Grid.Row="1" 
+              HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Button
+                Grid.Column="0" Grid.Row="0"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="20" Padding="5"
+                Click="Start_Click"
+                >
+                Starts
+            </Button>
+            
+            
+            
+            <Button 
+                Grid.Column="1" Grid.Row="0"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="20" Padding="5" Click="Button_Click"
+                    >
+                Mech Collections
+            </Button>
 
-        <!--
-        <ListView 
-            x:Name="List_of_Starts" Margin="76,146,75,68"        
-            >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="146"/>
-                    <GridViewColumn Header="File Path" DisplayMemberBinding="{Binding FilePath}" Width="100"/>
-                </GridView>
-            </ListView.View>    
-        </ListView>
-        -->
-        <ComboBox Name="List_of_Starts"
-                  ItemsSource="{Binding List_of_Starts}"
-                  DisplayMemberPath="Name"
-                  Text="Start"
-                  IsEditable="False" IsReadOnly="True"
-                  VerticalAlignment="Center" HorizontalAlignment="Center"
-                  Grid.Column="0" Grid.Row="1"/>
+        </Grid>
+        
+        
     </Grid>
 </Window>

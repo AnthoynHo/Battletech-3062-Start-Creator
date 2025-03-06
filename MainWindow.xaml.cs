@@ -26,19 +26,24 @@ namespace Battletech_3062_Start_Creator
     /// </summary>
     public partial class MainWindow : Window
     {
-        GearList gearlist = new GearList();
-        MechManager mechManager= new MechManager();
-        StartsManager startManager = new StartsManager();
+        
+
         public MainWindow()
         {
             InitializeComponent();
-            startManager.PopulateStarts();
-            List_of_Starts.ItemsSource = startManager.Starts;
+            ItemCollectionManager itemCollectionManager = new ItemCollectionManager();
         }
 
-        private void starts_Click(object sender, RoutedEventArgs e)
+        private void Start_Click(object sender, RoutedEventArgs e)
         {
+            StartCreator startWindow = new StartCreator();
+            startWindow.Show();
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Collections collectionWindow = new Collections();
+            collectionWindow.Show();
         }
     }
 }

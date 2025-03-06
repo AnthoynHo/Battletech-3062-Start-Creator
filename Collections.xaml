@@ -1,0 +1,48 @@
+﻿<Window x:Class="Battletech_3062_Start_Creator.Collections"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battletech_3062_Start_Creator"
+        mc:Ignorable="d"
+        Title="Collections" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock 
+            Background="Gray"
+            FontSize="40" TextAlignment="Center"
+
+            Foreground="WhiteSmoke"
+            Grid.Column="0" Grid.Row="0"
+            >
+                View Collections
+        </TextBlock>
+        
+        <ComboBox
+            Name="List_of_Collections" ItemsSource="{Binding Collections}"
+            DisplayMemberPath="Name"
+            Text="Select Collection"
+            Grid.Column="0" Grid.Row="1"
+            IsReadOnly="True" IsEditable="True"
+            SelectionChanged="List_of_Collections_SelectionChanged"
+            />
+
+        <ListView Name="List_of_Mechs" ItemsSource="{Binding Mechs}" Grid.Row="2" Grid.Column="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Mech" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                    <GridViewColumn Header="Rarity" DisplayMemberBinding="{Binding Rarity}" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>

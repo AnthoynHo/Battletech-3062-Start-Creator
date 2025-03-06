@@ -1,0 +1,121 @@
+﻿<Window x:Class="Battletech_3062_Start_Creator.StartCreator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battletech_3062_Start_Creator"
+        mc:Ignorable="d"
+        Title="StartCreator" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitleBlock-->
+        <TextBlock 
+            Background="Gray"
+            FontSize="40" TextAlignment="Center"
+    
+            Foreground="WhiteSmoke"
+            Grid.Column="0" Grid.Row="0"
+            >   
+            Create New Start
+        </TextBlock>
+
+        <!--
+<Button 
+    Name="starts" Background="Gray"
+    BorderBrush="Yellow" BorderThickness="1"
+    Click="starts_Click" ClickMode="Press"
+    Grid.Column="0" Grid.Row="2"
+    >
+    Start
+</Button>
+
+
+<ListView 
+    x:Name="List_of_Starts" Margin="76,146,75,68"        
+    >
+    <ListView.View>
+        <GridView>
+            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="146"/>
+            <GridViewColumn Header="File Path" DisplayMemberBinding="{Binding FilePath}" Width="100"/>
+        </GridView>
+    </ListView.View>    
+</ListView>
+-->
+
+        <!--Start Selection-->
+        <ComboBox Name="List_of_Starts"
+          ItemsSource="{Binding Starts}"
+          DisplayMemberPath="Name"
+          Text="Select Start"
+          IsEditable="False" IsReadOnly="True"
+          VerticalAlignment="Center" HorizontalAlignment="Center"
+          Grid.Column="0" Grid.Row="1"
+          SelectionChanged="List_of_Starts_SelectionChanged"/>
+
+        <!--Start Info-->
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition  Height="50*"/>
+            </Grid.RowDefinitions>
+            <TextBox Name="Name"
+           FontSize="16"
+           Text="Selected Start Info"
+           VerticalAlignment="Center" HorizontalAlignment="Center"
+           Grid.Column="0" Grid.Row="0"/>
+            <TextBox Name="ID" FontSize="16"
+             Text="ID" VerticalAlignment="Center" HorizontalAlignment="Center"
+             Grid.Column="1" Grid.Row="0"
+             />
+            <TextBox Name="StartSystem" FontSize="16"
+             Text="System" VerticalAlignment="Center" HorizontalAlignment="Center"
+             Grid.Column="0" Grid.Row="1"
+             />
+            <TextBox Name="Score" FontSize="16"
+             Text="Score Modifier" VerticalAlignment="Center" HorizontalAlignment="Center"
+             Grid.Column="1" Grid.Row="1"
+             />
+        </Grid>
+
+        <!--Displays Information of Selected Start as a Table-->
+        <ListView Name="List_of_Collections"  ItemsSource ="{Binding MechLists}" Grid.Row="3" Grid.Column="0">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Mech List" DisplayMemberBinding="{Binding}" Width="Auto"/> 
+                </GridView>
+            </ListView.View>
+            <!--
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding}" Grid.Column="0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            -->
+        </ListView>
+
+
+    </Grid>
+</Window>

@@ -15,12 +15,54 @@ namespace Battletech_3062_Start_Creator.Classes
     class Collection : Interface
     {
         public string Name { get; set; }
-        public List<Mech> Meches { get; set; }
+        public List<Mech>? Mechs { get; set; }
 
-        public Collection(string name, List<Mech> meches)
+
+        public Collection(string filepath)
         {
-            Name = name;
-            Meches = meches;
+            List<string> list = new List<string>();
+            //Get file info
+            //Currently using hard coded values
+            using (var reader = new StreamReader(filepath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+
+                    if (line == null)
+                    {
+                        continue;
+                    }
+                    list.Add(line);
+                    Trace.WriteLine(line);
+                }
+            }
+            //
+            string temp = list.First();
+            string[] nameString = temp.Split(",");
+            Name = nameString[0];
+            list.RemoveAt(0);
+            foreach (var line in list)
+            {
+                if (line == "")
+                {
+                    continue;
+                }
+                if (Mechs == null)
+                {
+                    Mechs = new List<Mech>();
+                    string[] stringArray = line.Split(",");
+                    Mech mech = new Mech(stringArray[0], int.Parse(stringArray[3]));
+                    Mechs.Add(mech);
+                }
+                else
+                {
+                    Trace.WriteLine(line.Trim());
+                    string[] stringArray = line.Split(",");
+                    Mech mech = new Mech(stringArray[0], int.Parse(stringArray[3]));
+                    Mechs.Add(mech);
+                }
+            }
         }   
     }
 }
